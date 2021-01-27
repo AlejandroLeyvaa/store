@@ -86,7 +86,17 @@ img {
 
 .Header-logo,
 .Header-icons {
+	width: 50%;
   padding: 1.6rem;
+}
+
+.Header-icons {
+	display: flex;
+	justify-content: center;
+}
+
+.Header-icons h2 {
+  margin: 0 1.6rem;
 }
 
 /* PRODUCT */

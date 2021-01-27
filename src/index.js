@@ -2,7 +2,49 @@ import './styles/main.css';
 import './styles/tablet.css';
 import './styles/desktop.css';
 
+function productTemplate(productName, productUrl, productPrice) {
+  const template = `
+  <figure class="Product-figure">
+    <img src="${productUrl}" alt="${productName}">
+  </figure>
+  <div class="Product-info">
+    <div class="Product-name">
+      <h2>${productName}</h2>
+    </div>
+    <div class="Product-desc">
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sed illo itaque neque autem consequuntur dignissimos in doloremque, aspernatur at cumque natus rerum corporis? Fugit earum, ratione animi odio qui dolor.</p>
+    </div>
+    <div class="Product-sell">
+      <span class="Product-price">$${productPrice} MXN</span>
+      <div class="Product-button-container">
+        <button class="button">
+          Buy
+        </button>
+      </div>
+    </div>
+  </div>
+  `
+  return template;
+};
 
-// background.style.backgroundImage = `url('../src/assets/images/fantasy640.jpg')`;
+function getData() {
+  fetch('https://cross-platform.herokuapp.com/api/products/')
+  .then((response) => response.json())
+  .then((productData) => {
+    const productsContainer = document.getElementById('products');
+    console.log(productData);
+    productData.data.forEach((item) => {
+      console.log(item);
+      const { product_name, product_url, product_price } = item;
+      const product = productTemplate(product_name, product_url, product_price);
+      const createDiv = document.createElement('div');
+      createDiv.className = 'Product-container';
+      createDiv.innerHTML = product;
+      productsContainer.appendChild(createDiv);
+    });
+  })
+  .catch((err) => console.error(err));
+}
 
+window.addEventListener('load', getData)
 

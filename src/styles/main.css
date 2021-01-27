@@ -137,7 +137,6 @@ img {
 
 .Product-price {
 	font-size: var(--font-size-span);
-	width: 64px;
 	height: 32px;
 	display: flex;
 	justify-content: center;
